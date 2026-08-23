@@ -40,10 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-
-        'cloudinary',
     'cloudinary_storage',
+    'django.contrib.staticfiles',
+    'cloudinary',
     'shop',
 ]
 
@@ -143,3 +142,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Вказуємо, що файли треба вантажити в Cloudinary
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
