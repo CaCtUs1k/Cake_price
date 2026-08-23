@@ -1,0 +1,29 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<div class="position-relative mb-5 text-center mt-3">
+    <h1 class="d-inline-block m-0">Наші Торти</h1>
+    <a href="{% url 'shop:fillings' %}" class="btn btn-outline-dark position-absolute top-50 end-0 translate-middle-y">Бенто та Трайфли</a>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for cake in cakes %}
+    <div class="col">
+        <div class="card h-100 shadow-sm border-0">
+            {% if cake.image %}
+                <img src="{{ cake.image.url }}" class="card-img-top" alt="{{ cake.title }}" style="height: 250px; object-fit: cover;">
+            {% endif %}
+            <div class="card-body text-center">
+                <h5 class="card-title">{{ cake.title }}</h5>
+                <p class="card-text text-muted">{{ cake.price }} ₴</p>
+                <a href="{% url 'shop:cake_detail' cake.id %}" class="btn btn-outline-dark">Детальніше</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center">
+        <p>Тортів поки немає. Додайте їх через адмін-панель!</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

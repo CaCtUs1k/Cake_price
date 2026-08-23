@@ -1,0 +1,35 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-9">
+        <div class="card shadow-sm border-0 p-4 mb-5">
+            <h2 class="mb-4 text-center">Правила замовлення</h2>
+            
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item py-3">Мінімальне замовлення — <strong>{{ rules.min_order_weight }} кг</strong></li>
+                <li class="list-group-item py-3">Двоповерхові — від <strong>{{ rules.two_tier_min_weight }} кг</strong></li>
+                <li class="list-group-item py-3">Різні начинки ярусів — від <strong>{{ rules.different_fillings_min_weight }} кг</strong> (+{{ rules.tier_construction_price }} грн до замовлення конструкція для ярусного торта)</li>
+                <li class="list-group-item py-3">Вага торта може вийти +/- <strong>{{ rules.weight_tolerance }} гр</strong></li>
+                <li class="list-group-item py-3">Розрахунок на людину +/- <strong>{{ rules.portion_weight }} гр</strong></li>
+                <li class="list-group-item py-3">Ціна декору рахується окремо. Велюрове покриття рахується в декор <strong>{{ rules.velour_price_per_kg }} грн/1кг</strong></li>
+                <li class="list-group-item py-3">Покриття торта — шоколадний ганаш</li>
+                <li class="list-group-item py-3">Частина передплати є обов'язковою умовою замовлення</li>
+                <li class="list-group-item py-3">Скасоване замовлення менш ніж за три дні — передплата не повертається, та якщо замовлені індивідуальні прикраси</li>
+                <li class="list-group-item py-3">Якщо хочете забрати торт завчасно або везти на далеку відстань — обов'язково попередьте!!!</li>
+                <li class="list-group-item py-3">Транспортування торту має бути на рівній поверхні - на поліку або у багажному відділенні машини.</li>
+                <li class="list-group-item py-3">Зберігати торт у коробці в холодильнику!!!</li>
+                <li class="list-group-item py-3">Щоб торт добре різався — дістаньте його з холодильника за 20 хвилин до нарізання</li>
+            </ul>
+
+            <div class="text-center mt-4">
+                <h4 class="text-muted fst-italic">СМАЧНОГО!</h4>
+            </div>
+            
+            <div class="mt-4 text-center">
+                <a href="{% url 'shop:catalog' %}" class="btn btn-outline-dark">Повернутися до каталогу</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

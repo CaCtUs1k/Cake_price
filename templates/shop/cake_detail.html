@@ -1,0 +1,22 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<div class="card shadow-sm border-0 mb-5">
+    <div class="row g-0">
+        <div class="col-md-6">
+            {% if cake.image %}
+                <img src="{{ cake.image.url }}" class="img-fluid rounded-start" alt="{{ cake.title }}">
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <div class="card-body p-5">
+                <h2 class="card-title mb-4">{{ cake.title }}</h2>
+                <h4 class="text-success mb-4">{{ cake.price }} ₴</h4>
+                <p class="card-text mb-5">{{ cake.description|linebreaks }}</p>
+                
+                <a href="{% url 'shop:catalog' %}" class="btn btn-outline-secondary w-100">Повернутися до каталогу</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

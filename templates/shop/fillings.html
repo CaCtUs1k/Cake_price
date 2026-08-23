@@ -1,0 +1,38 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="card shadow-sm border-0 p-5 mb-5">
+            
+            <!-- Блок з цінами -->
+            <ul class="list-unstyled fs-4 mb-5 text-center fst-italic">
+                <li class="mb-2">Трайфли <strong>{{ rules.trifle_price }} грн/шт</strong></li>
+                <li class="mb-2">Бенто торт <strong>{{ rules.bento_price }} грн</strong></li>
+                <li class="mb-2">Бенто 1 кг <strong>{{ rules.bento_1kg_price }} грн</strong></li>
+            </ul>
+
+            <!-- Блок з начинками -->
+            <h3 class="mb-3 fst-italic">Начинки:</h3>
+            <ul class="list-group list-group-flush mb-5 fs-5 border-bottom pb-3">
+                {% for filling in fillings %}
+                    <li class="list-group-item border-0 pb-1">- {{ filling.name }}</li>
+                {% empty %}
+                    <li class="list-group-item border-0 text-muted">Список начинок порожній. Додайте їх в адмінці!</li>
+                {% endfor %}
+            </ul>
+
+            <!-- Статичний текст про декор -->
+            <div class="fs-5 text-muted">
+                <p class="mb-1">(Написи кремом входять у вартість)</p>
+                <p class="mb-1">Додатковий декор рахується окремо</p>
+                <p class="mb-0">Малюнки кремом - рахуються як додатковий декор</p>
+            </div>
+            
+            <div class="mt-5 text-center">
+                <a href="{% url 'shop:catalog' %}" class="btn btn-outline-dark">Повернутися до каталогу</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
