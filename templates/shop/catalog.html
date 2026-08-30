@@ -12,7 +12,7 @@
     <div class="col">
         <div class="card h-100 shadow-sm border-0">
             {% if cake.preview_image %}
-                <img src="{{ cake.preview_image.url }}" class="card-img-top" alt="{{ cake.title }}" style="height: 250px; object-fit: cover;">
+                <img src="{{ cake.preview_image.url }}" class="card-img-top" alt="{{ cake.title }}" style="height: 100%; object-fit: cover;">
             {% elif cake.image %}
                 <img src="{{ cake.image.url }}" class="card-img-top" alt="{{ cake.title }}" style="height: 250px; object-fit: cover;">
             {% endif %}
