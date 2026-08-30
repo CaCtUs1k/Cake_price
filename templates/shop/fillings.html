@@ -16,7 +16,7 @@
             <h3 class="mb-3 fst-italic">Начинки:</h3>
             <ul class="list-group list-group-flush mb-5 fs-5 border-bottom pb-3">
                 {% for filling in fillings %}
-                    <li class="list-group-item border-0 pb-1">- {{ filling.name }}</li>
+                    <li class="list-group-item py-3 bg-transparent border-bottom border-light">- {{ filling.name }}</li>
                 {% empty %}
                     <li class="list-group-item border-0 text-muted">Список начинок порожній. Додайте їх в адмінці!</li>
                 {% endfor %}

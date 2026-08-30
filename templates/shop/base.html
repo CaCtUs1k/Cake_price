@@ -7,33 +7,104 @@
     <!-- Підключаємо Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-light d-flex flex-column min-vh-100">
+<style>
+    /* Загальний фон сайту - світлий персиковий */
+    body {
+        background-color: #FFF2EB !important;
+        color: #4A3B32;
+    }
+
+    /* Шапка сайту (хедер) та футер — рожеві */
+    header, .navbar, .site-header, footer {
+        background-color: #F8C8DC !important;
+        color: #5D3A42 !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Текст у футері робимо більш помітним */
+    footer small {
+        color: #5D3A42 !important;
+        font-weight: 500;
+    }
+
+    /* Фон карток товарів - трохи більш темний персиковий для контрасту з фоном */
+    .card, .cake-item, .product-card {
+        background-color: #FCEADE !important; /* Насиченіший персиковий тон */
+        border: 1px solid #F3D5C9 !important;
+        border-radius: 12px;
+    }
+
+    /* Кнопки замовлення / активні кнопки */
+    .btn-primary, button[type="submit"], .btn-action, a.btn {
+        background-color: #E07A82 !important;
+        color: #FFFFFF !important;
+        border: none !important;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-weight: 600;
+        transition: background 0.2s ease;
+    }
+
+    /* Ефект при наведенні на кнопку */
+    .btn-primary:hover, button[type="submit"]:hover, a.btn:hover {
+        background-color: #CC656E !important;
+    }
+</style>
+<body class="d-flex flex-column min-vh-100">
 
     <!-- Навігаційна панель -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <nav class="navbar navbar-expand-lg mb-4">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'shop:catalog' %}">CakeShop</a>
+            <a class="navbar-brand fw-bold text-dark" href="{% url 'shop:catalog' %}">Nataliia`s CakeShop</a>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'shop:rules' %}">Правила замовлення</a>
+                    <a class="nav-link text-dark" href="{% url 'shop:rules' %}">Умови замовлення</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <!-- Основний контент (займає весь вільний простір) -->
+    <!-- Основний контент -->
     <div class="container flex-grow-1">
         {% block content %}
         {% endblock %}
     </div>
 
-    <!-- Футер сайту -->
-    <footer class="bg-white text-center text-muted py-4 mt-5 border-top shadow-sm">
-        <div class="container">
-            <small>
-                Усі фото оброблені штучним інтелектом для більш показового зовнішнього вигляду,
-                але всі пропорції збережені в реальному співвідношенні❤️.
-            </small>
+<!-- Футер сайту -->
+    <footer class="py-4 mt-5 border-top shadow-sm">
+        <div class="container d-flex justify-content-between align-items-center flex-wrap gap-3">
+
+            <!-- Ліва частина: соцмережі та контакти -->
+            <div class="d-flex align-items-center flex-wrap gap-3">
+                {% if social_settings.telegram %}
+                    <a href="{{ social_settings.telegram }}" target="_blank" class="text-decoration-none text-dark fw-medium">Telegram</a>
+                    <span class="text-muted">•</span>
+                {% endif %}
+
+                {% if social_settings.instagram %}
+                    <a href="{{ social_settings.instagram }}" target="_blank" class="text-decoration-none text-dark fw-medium">Instagram</a>
+                    <span class="text-muted">•</span>
+                {% endif %}
+
+                {% if social_settings.facebook %}
+                    <a href="{{ social_settings.facebook }}" target="_blank" class="text-decoration-none text-dark fw-medium">Facebook</a>
+                    <span class="text-muted">•</span>
+                {% endif %}
+
+                {% if social_settings.phone %}
+                    <a href="tel:{{ social_settings.phone }}" class="text-decoration-none text-dark fw-medium">{{ social_settings.phone }}</a>
+                {% endif %}
+            </div>
+
+            <!-- Права частина: текст-попередження -->
+            <div>
+                <small>
+                    Усі фото оброблені штучним інтелектом для більш показового зовнішнього вигляду,
+                    <br>
+                    Всі пропорції збережені в реальному співвідношенні❤️.
+                </small>
+            </div>
+
         </div>
     </footer>
 

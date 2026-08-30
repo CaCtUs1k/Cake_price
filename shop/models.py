@@ -2,7 +2,8 @@ from django.db import models
 
 class Cake(models.Model):
     title = models.CharField(max_length=255, verbose_name="Назва торта")
-    image = models.ImageField(upload_to='cakes/', verbose_name="Зображення")
+    image = models.ImageField(upload_to='cakes/', verbose_name="Картинка для детального огляду товару")
+    preview_image = models.ImageField(upload_to='cakes/previews/', blank=True, null=True, verbose_name="Картинка для каталогу")
     description = models.TextField(verbose_name="Опис")
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Базова ціна")
 
@@ -41,3 +42,26 @@ class Filling(models.Model):
     class Meta:
         verbose_name = "Начинка"
         verbose_name_plural = "Начинки"
+
+class SiteSettings(models.Model):
+    telegram = models.URLField(max_length=200, blank=True, verbose_name="Посилання на Telegram")
+    instagram = models.URLField(max_length=200, blank=True, verbose_name="Посилання на Instagram")
+    facebook = models.URLField(max_length=200, blank=True, verbose_name="Посилання на Facebook")
+    phone = models.CharField(max_length=50, blank=True, verbose_name="Номер телефону")
+
+    def save(self, *class_self, **kwargs):
+        # Гарантуємо, що в базі завжди буде лише один рядок налаштувань
+        self.pk = 1
+        super().save(*class_self, **kwargs)
+
+    @classmethod
+    def load(cls):
+        obj, created = cls.objects.get_or_create(pk=1)
+        return obj
+
+    def __str__(self):
+        return "Налаштування сайту та соцмереж"
+
+    class Meta:
+        verbose_name = "Налаштування сайту"
+        verbose_name_plural = "Налаштування сайту"

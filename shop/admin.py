@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Cake, RuleSettings, Filling
+from .models import Cake, RuleSettings, Filling, SiteSettings
 
 @admin.register(Cake)
 class CakeAdmin(admin.ModelAdmin):
@@ -20,3 +20,13 @@ class RuleSettingsAdmin(admin.ModelAdmin):
 @admin.register(Filling)
 class FillingAdmin(admin.ModelAdmin):
     list_display = ('name',)
+
+@admin.register(SiteSettings)
+class SiteSettingsAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        # Забороняємо створювати більше ніж один рядок налаштувань
+        return not SiteSettings.objects.exists()
+
+    def has_delete_permission(self, request, obj=None):
+        # Забороняємо видаляти налаштування
+        return False
